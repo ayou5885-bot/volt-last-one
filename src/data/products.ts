@@ -2,6 +2,56 @@ import type { Product } from '@/types/product';
 import { images } from './images';
 
 export const products: Product[] = [
+
+  
+  //--------acer---------
+  
+  {
+    id: 'acere10etbook',
+    brand: 'acer',
+    name: 'ACER E10 ETBOOK',
+    slug: 'ACER-E10-ETBOOK',
+    category: 'laptops',
+    price: 3499,
+    image: images[acere10etbook],
+    shortDescription: '16" Liquid Retina XDR, M3 Max, 36GB RAM, 1TB SSD',
+    description:
+      'Découvrez le LAPTOP ACER E10 ETBOOK, un ordinateur portable performant avec écran 14" FHD IPS, processeur Intel i3-10100Y, 8GB RAM et 256GB SSD. Idéal pour le travail et les études, disponible au meilleur prix en Algérie.',
+    specifications: [
+      { label: 'CPU', value: 'Apple M3 Max (16-core)' },
+      { label: 'GPU', value: '40-core GPU' },
+      { label: 'Memory', value: '36GB Unified' },
+      { label: 'Storage', value: '1TB SSD' },
+      { label: 'Display', value: '16.2" Liquid Retina XDR' },
+      { label: 'Battery', value: 'Up to 22 hours' },
+    ],
+    features: ['ProMotion 120Hz', 'Six-speaker sound', 'MagSafe charging', 'Thunderbolt 4'],
+    availability: 'in-stock',
+    featured: true,
+  },
+  {
+    id: 'macbook-pro-16',
+    brand: 'Apple',
+    name: 'MacBook Pro 16" M3 Max',
+    slug: 'macbook-pro-16-m3-max',
+    category: 'laptops',
+    price: 80990,
+    image: images.laptop,
+    shortDescription: '16" Liquid Retina XDR, M3 Max, 36GB RAM, 1TB SSD',
+    description:
+      'The MacBook Pro 16-inch with M3 Max delivers workstation-class performance in a thin and light aluminum chassis. The Liquid Retina XDR display offers extreme dynamic range and pro-grade color accuracy, while the advanced thermal architecture keeps things cool under sustained loads.',
+    specifications: [
+      { label: 'CPU', value: `intel® Core™ i3-10100Y (2 Cœurs, 4 Threads, jusqu'à 3.9GHz, 4MB Cache)` },
+      { label: 'GPU', value: 'Intel UHD Graphics' },
+      { label: 'Memory', value: '8GB ddr4' },
+      { label: 'Storage', value: '256 SSD' },
+      { label: 'Display', value: '14 pouces Full HD (1920x1080) IPS' },
+      //{ label: 'Battery', value: 'Up to 22 hours' },
+    ],
+    //features: ['ProMotion 120Hz', 'Six-speaker sound', 'MagSafe charging', 'Thunderbolt 4'],
+    availability: 'in-stock',
+    featured: true,
+  },
   {
     id: 'macbook-pro-16',
     brand: 'Apple',
