@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink-50 text-ink-900 font-sans antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-accent-500 text-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-ink-900 text-white text-sm font-semibold transition-all duration-300 ease-out-expo hover:bg-ink-800 active:scale-[0.98];
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-accent-500 text-white text-sm font-semibold transition-all duration-300 ease-out-expo hover:bg-accent-600 active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-ink-200 text-ink-900 text-sm font-semibold transition-all duration-300 ease-out-expo hover:border-ink-400 hover:bg-ink-50 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-ink-600 text-sm font-medium transition-all duration-200 hover:bg-ink-100 hover:text-ink-900;
+  }
+
+  .card-surface {
+    @apply bg-white border border-ink-100 rounded-xl;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-lg border border-ink-200 bg-white text-ink-900 text-sm transition-colors duration-200 focus:border-ink-900 focus:outline-none placeholder:text-ink-400;
+  }
+
+  .label-text {
+    @apply block text-xs font-semibold uppercase tracking-wider text-ink-500 mb-1.5;
+  }
+
+  .container-page {
+    @apply mx-auto max-w-8xl px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
