@@ -20,7 +20,7 @@ export const brands: Brand[] = [
   { id: 'seasonic', name: 'Seasonic' },
   { id: 'noctua', name: 'Noctua' },
   { id: 'anker', name: 'Anker' },
-  { id: 'lenovo', name: 'lenovo' },
-  { id: 'hp', name: 'hp' },
+ // { id: 'lenovo', name: 'lenovo' },
+//  { id: 'hp', name: 'hp' },
   { id: 'acer', name: 'acer' },
 ];
