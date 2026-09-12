@@ -39,7 +39,7 @@ export const images = {
 
   //---------acer----------
 
-  'acere10etbook':'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/ACER-E10-ETBOOK.webp',
+  acere10etbook:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/ACER-E10-ETBOOK.webp',
  // '':'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/ACER-ASPIRE-3-15-A315-59-58SS.webp',
 
 
