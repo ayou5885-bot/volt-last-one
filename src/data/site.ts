@@ -11,7 +11,7 @@ export const site = {
     youtube: '#',
   },
   trustBadges: [
-    { title: 'Free Shipping', subtitle: 'On orders over $99' },
+   // { title: 'Free Shipping', subtitle: 'On orders over $99' },
     { title: '2-Year Warranty', subtitle: 'On all components' },
     { title: 'Expert Support', subtitle: '7 days a week' },
     { title: 'Secure Checkout', subtitle: 'Encrypted & verified' },
