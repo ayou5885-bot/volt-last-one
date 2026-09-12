@@ -13,7 +13,7 @@ export const products: Product[] = [
     slug: 'ACER-E10-ETBOOK',
     category: 'laptops',
     price: 80990,
-    image: images['acere10etbook'],
+    image: ['acere10etbook'],
     shortDescription: '16" Liquid Retina XDR, M3 Max, 36GB RAM, 1TB SSD',
     description:
       'Découvrez le LAPTOP ACER E10 ETBOOK, un ordinateur portable performant avec écran 14" FHD IPS, processeur Intel i3-10100Y, 8GB RAM et 256GB SSD. Idéal pour le travail et les études, disponible au meilleur prix en Algérie.',
