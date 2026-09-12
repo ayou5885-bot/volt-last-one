@@ -29,7 +29,7 @@ export const products: Product[] = [
     availability: 'in-stock',
     featured: true,
   },
-  {
+/*  {
     id: 'macbook-pro-16',
     brand: 'Apple',
     name: 'MacBook Pro 16" M3 Max',
@@ -51,7 +51,7 @@ export const products: Product[] = [
     //features: ['ProMotion 120Hz', 'Six-speaker sound', 'MagSafe charging', 'Thunderbolt 4'],
     availability: 'in-stock',
     featured: true,
-  },
+  },*/
   {
     id: 'macbook-pro-16',
     brand: 'Apple',
