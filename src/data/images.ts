@@ -19,4 +19,25 @@ export const images = {
   cpuCooler: 'https://images.pexels.com/photos/3520693/pexels-photo-3520693.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   accessories: 'https://images.pexels.com/photos/33592297/pexels-photo-33592297.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   heroMain: 'https://images.pexels.com/photos/30469973/pexels-photo-30469973.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+
+
+
+  //---------products----------
+
+  //---------lenovo----------
+
+
+  
+
+  //---------hp----------
+
+
+
+
+  //---------acer----------
+
+
+
+
+  //---------hp----------
 } as const;
