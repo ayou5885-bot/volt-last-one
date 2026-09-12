@@ -25,7 +25,7 @@ export const products: Product[] = [
       { label: 'Display', value: '14 pouces Full HD (1920x1080) IPS' },
       { label: 'Battery', value: 'Up to 22 hours' },
     ],
-   // features: ['ProMotion 120Hz', 'Six-speaker sound', 'MagSafe charging', 'Thunderbolt 4'],
+    features: ['', '', '', ''],
     availability: 'in-stock',
     featured: true,
   },
