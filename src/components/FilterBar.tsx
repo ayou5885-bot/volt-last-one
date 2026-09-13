@@ -105,13 +105,13 @@ export default function FilterBar({
           type="range"
           min={0}
           max={maxPrice}
-          step={50}
+          step={1000}
           value={filters.priceMax}
           onChange={(e) => onChange({ priceMax: Number(e.target.value) })}
           className="flex-1 accent-ink-900 cursor-pointer"
         />
         <span className="text-xs font-semibold text-ink-900 whitespace-nowrap tabular-nums">
-          ${filters.priceMax.toLocaleString()}
+          {filters.priceMax.toLocaleString()} DZD
         </span>
       </div>
 
@@ -203,14 +203,14 @@ export default function FilterBar({
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-semibold uppercase tracking-wider text-ink-500">Max Price</span>
           <span className="text-sm font-bold text-ink-900 tabular-nums">
-            ${filters.priceMax.toLocaleString()}
+            {filters.priceMax.toLocaleString()} DZD
           </span>
         </div>
         <input
           type="range"
           min={0}
           max={maxPrice}
-          step={50}
+          step={1000}
           value={filters.priceMax}
           onChange={(e) => onChange({ priceMax: Number(e.target.value) })}
           className="w-full accent-ink-900 cursor-pointer"
