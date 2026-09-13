@@ -29,29 +29,216 @@ export const products: Product[] = [
     availability: 'in-stock',
     featured: true,
   },
-/*  {
-    id: 'macbook-pro-16',
-    brand: 'Apple',
-    name: 'MacBook Pro 16" M3 Max',
-    slug: 'macbook-pro-16-m3-max',
+  {
+    id: 'aceraspire315',
+    brand: 'acer',
+    name: 'ACER ASPIRE 3 15',
+    slug: 'ACER-ASPIRE-3-15',
     category: 'laptops',
-    price: 80990,
-    image: images.laptop,
-    shortDescription: '16" Liquid Retina XDR, M3 Max, 36GB RAM, 1TB SSD',
+    price: 119990,
+    image: images.aceraspire315,
+    shortDescription: 'LAPTOP ACER ASPIRE 3 15 A315-59-58SS | 15.6” FHD | INTEL I5-1235U | 8GB | 512GB SSD',
     description:
       'The MacBook Pro 16-inch with M3 Max delivers workstation-class performance in a thin and light aluminum chassis. The Liquid Retina XDR display offers extreme dynamic range and pro-grade color accuracy, while the advanced thermal architecture keeps things cool under sustained loads.',
     specifications: [
-      { label: 'CPU', value: `intel® Core™ i3-10100Y (2 Cœurs, 4 Threads, jusqu'à 3.9GHz, 4MB Cache)` },
-      { label: 'GPU', value: 'Intel UHD Graphics' },
+      { label: 'CPU', value: `Intel® Core™ i5-1235U (12th Gen)` },
+      { label: 'GPU', value: 'Intel® Iris® Xe Graphics' },
       { label: 'Memory', value: '8GB ddr4' },
-      { label: 'Storage', value: '256 SSD' },
-      { label: 'Display', value: '14 pouces Full HD (1920x1080) IPS' },
-      //{ label: 'Battery', value: 'Up to 22 hours' },
+      { label: 'Storage', value: '512 SSD' },
+      { label: 'Display', value: '15.6" Full HD (1920 x 1080) ComfyView TN' },
+      { label: 'Battery', value: 'Up to 6 hours' },
     ],
-    //features: ['ProMotion 120Hz', 'Six-speaker sound', 'MagSafe charging', 'Thunderbolt 4'],
+    features: ['ProMotion 120Hz', 'Six-speaker sound', 'MagSafe charging', 'Thunderbolt 4'],
     availability: 'in-stock',
     featured: true,
-  },*/
+  },
+ 
+
+
+  //-------------HP----------------
+
+   
+  {
+    id: 'hp15fd0602tu',
+    brand: 'hp',
+    name: 'HP 15-FD0602TU',
+    slug: 'HP-15-FD0602TU',
+    category: 'laptops',
+    price: 149900,
+    image: images.hp15fd0602tu,
+    shortDescription: 'LAPTOP HP 15-FD0602TU | 15.6” FHD | INTEL I7-1255U | 8GB | 512GB SSD(0 avis) Laisser un avis',
+    description:
+       'Découvrez le LAPTOP HP 15-FD0602TU, un ordinateur portable puissant et polyvalent, idéal pour le travail et le divertissement en Algérie. Profitez de performances fluides grâce à son processeur i7-1255U, 8Go de RAM et un SSD NVMe de 512Go, disponible au meilleur prix en Algérie avec livraison rapide.',
+    specifications: [
+      { label: 'CPU', value: 'I7-1255U' },
+      { label: 'GPU', value: '40-core GPU' },
+      { label: 'Memory', value: '8gb ddr4 3200mhz' },
+      { label: 'Storage', value: 'ssd 512 GO' },
+      { label: 'Display', value: 'Full HD (1920 x 1080)' },
+      { label: 'Battery', value: 'Up to 6 hours' },
+    ],
+    features: ['35.98 x 23.6 x 1.86 cm', '	1.59 kg', 'Webcam', 'Wi-Fi 6, Bluetooth 5.3'],
+    availability: 'in-stock',
+    featured: true,
+  },
+  {
+    id: 'hp15fd0133wm',
+    brand: 'hp',
+    name: 'HP 15-FD0133WM',
+    slug: 'HP-15-FD0133WM',
+    category: 'laptops',
+    price: 119990,
+    image: images.hp15fd0133wm,
+    shortDescription: 'LAPTOP HP 15-FD0133WM | 15.6” FHD IPS | INTEL I3-N305 | 8GB | 256GB SSD',
+    description:
+      `Découvrez le LAPTOP HP 15-FD0133WM, un PC portable performant avec processeur Intel Core i3-N305, 8Go RAM et 256Go SSD, idéal pour le travail et le divertissement en Algérie. Profitez d'un écran 15.6" HD et d'une connectivité complète au meilleur prix.`,
+    specifications: [
+      { label: 'CPU', value: `i3n305` },
+      { label: 'GPU', value: 'Intel UHD Graphics (Shared)' },
+      { label: 'Memory', value: '8GB ddr4' },
+      { label: 'Storage', value: '256 SSD' },
+      { label: 'Display', value: '15.6" Full HD (1920 x 1080)' },
+      { label: 'Battery', value: 'Up to 6 hours' },
+    ],
+    features: ['ProMotion 120Hz', 'Six-speaker sound', 'MagSafe charging', 'Thunderbolt 4'],
+    availability: 'in-stock',
+    featured: true,
+  },
+  {
+    id: 'hp250g9',
+    brand: 'hp',
+    name: 'HP 250 G9',
+    slug: 'HP-250-G9',
+    category: 'laptops',
+    price: 66990,
+    image: images.hp250g9,
+    shortDescription: 'LAPTOP HP 250 G9 | 15.6” FHD | INTEL CELERON N4500 | 4GB | 256GB SSD',
+    description:
+      `Découvrez le LAPTOP HP 15-FD0133WM, un PC portable performant avec processeur Intel Core i3-N305, 8Go RAM et 256Go SSD, idéal pour le travail et le divertissement en Algérie. Profitez d'un écran 15.6" HD et d'une connectivité complète au meilleur prix.`,
+    specifications: [
+      { label: 'CPU', value: `Intel Celeron N4500` },
+      { label: 'GPU', value: 'Intel UHD Graphics (Shared)' },
+      { label: 'Memory', value: '4GB ddr4' },
+      { label: 'Storage', value: '256 SSD' },
+      { label: 'Display', value: '15.6" Full HD (1920 x 1080)anti-glare' },
+      { label: 'Battery', value: 'Up to 4 hours' },
+    ],
+    features: ['anti-glare', '	Windows 11 Home', 'Chiclet anti-éclaboussures', 'HDMI'],
+    availability: 'in-stock',
+    featured: true,
+  },
+
+
+
+  //---------asus------------
+
+
+
+  {
+    id: 'asuscicobook16',
+    brand: 'asus',
+    name: 'ASUS VIVOBOOK 16',
+    slug: 'ASUS-VIVOBOOK-16',
+    category: 'laptops',
+    price: 149000,
+    image: images.asuscicobook16,
+    shortDescription: 'LAPTOP ASUS VIVOBOOK 16 X1605VA | 15.6” FHD | INTEL I7-13620H | 8GB | 512GB SSD',
+    description:
+      `Découvrez le LAPTOP HP 15-FD0133WM, un PC portable performant avec processeur Intel Core i3-N305, 8Go RAM et 256Go SSD, idéal pour le travail et le divertissement en Algérie. Profitez d'un écran 15.6" HD et d'une connectivité complète au meilleur prix.`,
+    specifications: [
+      { label: 'CPU', value: `Intel Core i7-13620H` },
+      { label: 'GPU', value: 'Intel UHD Graphics' },
+      { label: 'Memory', value: '8GB ddr4' },
+      { label: 'Storage', value: '512 GO SSD' },
+      { label: 'Display', value: '16 pouces IPS 16/10, résolution 1920 x 1200' },
+      { label: 'Battery', value: 'Up to 8 hours' },
+    ],
+    features: ['720p HD avec cache intégré', 'Bluetooth 5.3', '16 pouces IPS 16/10', 'Wi-Fi 6E'],
+    availability: 'in-stock',
+    featured: true,
+  },
+  {
+    id: 'vivobookx1502v',
+    brand: 'asus',
+    name: 'VIVOBOOK X1502V',
+    slug: 'VIVOBOOK X1502V',
+    category: 'laptops',
+    price: 153990,
+    image: images.vivobookx1502v,
+    shortDescription: 'LAPTOP ASUS VIVOBOOK X1502V | 15.6” FHD | INTEL I7-13700H | 8GB | 512GB SSD',
+    description:
+      `Découvrez le LAPTOP HP 15-FD0133WM, un PC portable performant avec processeur Intel Core i3-N305, 8Go RAM et 256Go SSD, idéal pour le travail et le divertissement en Algérie. Profitez d'un écran 15.6" HD et d'une connectivité complète au meilleur prix.`,
+    specifications: [
+      { label: 'CPU', value: `Intel Core i7-13700H` },
+      { label: 'GPU', value: 'Intel Iris Xe Graphics' },
+      { label: 'Memory', value: '8GB ddr4' },
+      { label: 'Storage', value: '512 GO SSD' },
+      { label: 'Display', value: '15.6″ FHD' },
+      { label: 'Battery', value: '42 Wh 3-cell Li-ion Battery' },
+    ],
+    features: ['65 W Power Adapter', 'Wi-Fi 6 (802.11ax)', 'Bluetooth 5.3', 'Anti-Glare Panel'],
+    availability: 'in-stock',
+    featured: true,
+  },
+
+
+
+
+  //------------lenovo------------
+
+
+
+  {
+    id: 'v15g2ijl',
+    brand: 'lenovo',
+    name: 'LENOVO V15 G2 IJL',
+    slug: 'LENOVO-V15-G2-IJL',
+    category: 'laptops',
+    price: 68990,
+    image: images.v15g2ijl,
+    shortDescription: 'LAPTOP LENOVO V15 G2 IJL | 15.6” FHD | INTEL CELERON N4500 | 8GB | 256GB SSD',
+    description:
+      'The MacBook Pro 16-inch with M3 Max delivers workstation-class performance in a thin and light aluminum chassis. The Liquid Retina XDR display offers extreme dynamic range and pro-grade color accuracy, while the advanced thermal architecture keeps things cool under sustained loads.',
+    specifications: [
+      { label: 'CPU', value: 'Intel Celeron N4500' },
+      { label: 'GPU', value: 'intel HD graphics' },
+      { label: 'Memory', value: '8 GB' },
+      { label: 'Storage', value: '256 GB SSD' },
+      { label: 'Display', value: '15.6" Full HD' },
+      { label: 'Battery', value: 'Up to 4 hours' },
+    ],
+    features: ['P45 watts', 'TPM 2.0 firmware', 'Intégrée 720p HD avec cache physique', 'Wi-Fi AC + Bluetooth 5.0'],
+    availability: 'in-stock',
+    featured: true,
+  },
+  {
+    id: 'ideapadslim315',
+    brand: 'lenovo',
+    name: 'LENOVO IDEAPAD SLIM 3 15IRH8',
+    slug: 'LENOVO-IDEAPAD-SLIM-3-15IRH8',
+    category: 'laptops',
+    price: 129900,
+    image: images.ideapadslim315,
+    shortDescription: 'LAPTOP LENOVO IDEAPAD SLIM 3 15IRH8 | 15.6” FHD | INTEL I5-13420H | 8GB | 512GB SSD',
+    description:
+      'The MacBook Pro 16-inch with M3 Max delivers workstation-class performance in a thin and light aluminum chassis. The Liquid Retina XDR display offers extreme dynamic range and pro-grade color accuracy, while the advanced thermal architecture keeps things cool under sustained loads.',
+    specifications: [
+      { label: 'CPU', value: 'i5-13420H' },
+      { label: 'GPU', value: 'intel HD graphics' },
+      { label: 'Memory', value: '8 GB' },
+      { label: 'Storage', value: '512 GB SSD' },
+      { label: 'Display', value: '15.6" Full HD' },
+      { label: 'Battery', value: 'Up to 4 hours' },
+    ],
+    features: ['P45 watts', 'TPM 2.0 firmware', 'Intégrée 720p HD avec cache physique', 'Wi-Fi AC + Bluetooth 5.0'],
+    availability: 'in-stock',
+    featured: false,
+  },
+
+
+
+
+  //-----------apple------------
   {
     id: 'macbook-pro-16',
     brand: 'Apple',
