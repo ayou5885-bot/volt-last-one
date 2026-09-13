@@ -27,7 +27,7 @@ export const images = {
   //---------lenovo----------
 
   ideapadslim315:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168390/LENOVO-IDEAPAD-SLIM-3-15IRH8.webp',
-  v15g2ijl:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/LENOVO-IDEAPAD-SLIM.webp',
+  v15g2ijl:'https://res.cloudinary.com/ogejzzif/image/upload/v1789258217/v15g2ijl.webp',
   
 
   //---------hp----------
