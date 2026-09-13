@@ -26,27 +26,27 @@ export const images = {
 
   //---------lenovo----------
 
-//  '':'https://res.cloudinary.com/ogejzzif/image/upload/v1789168390/LENOVO-IDEAPAD-SLIM-3-15IRH8.webp',
- // '':'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/LENOVO-IDEAPAD-SLIM.webp',
+  ideapadslim315:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168390/LENOVO-IDEAPAD-SLIM-3-15IRH8.webp',
+  v15g2ijl:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/LENOVO-IDEAPAD-SLIM.webp',
   
 
   //---------hp----------
 
- // '':'https://res.cloudinary.com/ogejzzif/image/upload/v1789168917/HP-15-FD0602TU.webp',
- // '':'https://res.cloudinary.com/ogejzzif/image/upload/v1789168509/Screenshot_2026-09-10_210543.png',
- // '':'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/HP-15-FD0133WM.webp',
+  hp15fd0602tu:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168917/HP-15-FD0602TU.webp',
+  hp250g9:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168509/Screenshot_2026-09-10_210543.png',
+  hp15fd0133wm:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/HP-15-FD0133WM.webp',
 
 
   //---------acer----------
 
   acere10etbook:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/ACER-E10-ETBOOK.webp',
- // '':'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/ACER-ASPIRE-3-15-A315-59-58SS.webp',
+  aceraspire315:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168916/ACER-ASPIRE-3-15-A315-59-58SS.webp',
 
 
   //---------asus----------
 
-  //'':'https://res.cloudinary.com/ogejzzif/image/upload/v1789168917/ASUS-VIVOBOOK.webp',
-//  '':'https://res.cloudinary.com/ogejzzif/image/upload/v1789168917/ASUS-VIVOBOOK-16.webp',
+  vivobookx1502v:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168917/ASUS-VIVOBOOK.webp',
+  asuscicobook16:'https://res.cloudinary.com/ogejzzif/image/upload/v1789168917/ASUS-VIVOBOOK-16.webp',
 
 
 
