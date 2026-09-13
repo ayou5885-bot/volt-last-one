@@ -9,7 +9,6 @@ export interface FilterState {
   category: string;
   brand: string;
   availability: string;
-  priceMin: number;
   priceMax: number;
   sort: SortOption;
   search: string;
@@ -43,7 +42,7 @@ export default function FilterBar({
     (filters.category !== 'all' ? 1 : 0) +
     (filters.brand !== 'all' ? 1 : 0) +
     (filters.availability !== 'all' ? 1 : 0) +
-    (filters.priceMin > 0 || filters.priceMax < maxPrice ? 1 : 0);
+    (filters.priceMax < maxPrice ? 1 : 0);
 
   const selectClass =
     'appearance-none w-full pl-3 pr-9 py-2 rounded-lg border border-ink-200 bg-white text-sm font-medium text-ink-900 cursor-pointer transition-colors hover:border-ink-300 focus:border-ink-900 focus:outline-none';
@@ -99,37 +98,21 @@ export default function FilterBar({
         <Chevron />
       </div>
 
-      {/* Price Range */}
-      <div className="flex flex-col gap-1.5 px-3 py-2 rounded-lg border border-ink-200 bg-white min-w-[220px]">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-medium text-ink-500 whitespace-nowrap">Price Range</span>
-          <span className="text-xs font-semibold text-ink-900 whitespace-nowrap tabular-nums">
-            {filters.priceMin.toLocaleString()} - {filters.priceMax.toLocaleString()} DZD
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <input
-            type="number"
-            min={0}
-            max={filters.priceMax}
-            step={1000}
-            value={filters.priceMin}
-            onChange={(e) => onChange({ priceMin: Math.min(Number(e.target.value), filters.priceMax) })}
-            className="w-1/2 px-2 py-1 rounded border border-ink-200 text-xs focus:border-ink-900 focus:outline-none"
-            placeholder="Min"
-          />
-          <span className="text-ink-300 text-xs">-</span>
-          <input
-            type="number"
-            min={filters.priceMin}
-            max={maxPrice}
-            step={1000}
-            value={filters.priceMax}
-            onChange={(e) => onChange({ priceMax: Math.max(Number(e.target.value), filters.priceMin) })}
-            className="w-1/2 px-2 py-1 rounded border border-ink-200 text-xs focus:border-ink-900 focus:outline-none"
-            placeholder="Max"
-          />
-        </div>
+      {/* Price */}
+      <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-ink-200 bg-white min-w-[150px]">
+        <span className="text-xs font-medium text-ink-500 whitespace-nowrap">Max</span>
+        <input
+          type="range"
+          min={0}
+          max={maxPrice}
+          step={1000}
+          value={filters.priceMax}
+          onChange={(e) => onChange({ priceMax: Number(e.target.value) })}
+          className="flex-1 accent-ink-900 cursor-pointer"
+        />
+        <span className="text-xs font-semibold text-ink-900 whitespace-nowrap tabular-nums">
+          {filters.priceMax.toLocaleString()} DZD
+        </span>
       </div>
 
       {/* Sort */}
@@ -215,37 +198,23 @@ export default function FilterBar({
         </div>
       </div>
 
-      {/* Price Range */}
+      {/* Price slider */}
       <div className="px-3 py-3 rounded-lg border border-ink-200 bg-white">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold uppercase tracking-wider text-ink-500">Price Range</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-ink-500">Max Price</span>
           <span className="text-sm font-bold text-ink-900 tabular-nums">
-            {filters.priceMin.toLocaleString()} - {filters.priceMax.toLocaleString()} DZD
+            {filters.priceMax.toLocaleString()} DZD
           </span>
         </div>
-        <div className="flex items-center gap-2">
-          <input
-            type="number"
-            min={0}
-            max={filters.priceMax}
-            step={1000}
-            value={filters.priceMin}
-            onChange={(e) => onChange({ priceMin: Math.min(Number(e.target.value), filters.priceMax) })}
-            className="w-1/2 px-3 py-2 rounded-lg border border-ink-200 text-sm focus:border-ink-900 focus:outline-none"
-            placeholder="Min"
-          />
-          <span className="text-ink-300">-</span>
-          <input
-            type="number"
-            min={filters.priceMin}
-            max={maxPrice}
-            step={1000}
-            value={filters.priceMax}
-            onChange={(e) => onChange({ priceMax: Math.max(Number(e.target.value), filters.priceMin) })}
-            className="w-1/2 px-3 py-2 rounded-lg border border-ink-200 text-sm focus:border-ink-900 focus:outline-none"
-            placeholder="Max"
-          />
-        </div>
+        <input
+          type="range"
+          min={0}
+          max={maxPrice}
+          step={1000}
+          value={filters.priceMax}
+          onChange={(e) => onChange({ priceMax: Number(e.target.value) })}
+          className="w-full accent-ink-900 cursor-pointer"
+        />
       </div>
     </div>
   );
