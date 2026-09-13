@@ -6,19 +6,25 @@ import ProductGrid from '@/components/ProductGrid';
 import FilterBar, { type FilterState } from '@/components/FilterBar';
 import type { SortOption } from '@/types/product';
 
-const MAX_PRICE = 4000;
-
-const defaultFilters: FilterState = {
-  category: 'all',
-  brand: 'all',
-  availability: 'all',
-  priceMax: MAX_PRICE,
-  sort: 'featured',
-  search: '',
-};
-
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // يُحسب تلقائيًا من أعلى سعر موجود فعليًا في المنتجات (بالدينار)
+  const MAX_PRICE = useMemo(() => {
+    if (products.length === 0) return 0;
+    const highest = Math.max(...products.map((p) => p.price));
+    return Math.ceil(highest / 1000) * 1000; // تقريب لأقرب 1000 لشكل أنظف للسلايدر
+  }, []);
+
+  const defaultFilters: FilterState = {
+    category: 'all',
+    brand: 'all',
+    availability: 'all',
+    priceMax: MAX_PRICE,
+    sort: 'featured',
+    search: '',
+  };
+
   const [filters, setFilters] = useState<FilterState>(() => ({
     ...defaultFilters,
     category: searchParams.get('category') || 'all',
@@ -97,7 +103,7 @@ export default function Shop() {
     }
 
     return result;
-  }, [filters]);
+  }, [filters, MAX_PRICE]);
 
   return (
     <div className="min-h-screen">
@@ -114,27 +120,4 @@ export default function Shop() {
               {filters.category !== 'all'
                 ? products.find((p) => p.category === filters.category)?.category
                   ? (() => {
-                      const cat = products.find((p) => p.category === filters.category);
-                      return cat ? cat.category.charAt(0).toUpperCase() + cat.category.slice(1) : 'Shop';
-                    })()
-                  : 'Shop'
-                : 'All Products'}
-            </h1>
-          </motion.div>
-        </div>
-      </div>
-
-      <FilterBar
-        filters={filters}
-        onChange={updateFilter}
-        onClear={clearFilters}
-        resultCount={filtered.length}
-        maxPrice={MAX_PRICE}
-      />
-
-      <div className="container-page py-8">
-        <ProductGrid products={filtered} />
-      </div>
-    </div>
-  );
-}
+                      const cat = products.find((p) =>
