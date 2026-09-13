@@ -120,4 +120,27 @@ export default function Shop() {
               {filters.category !== 'all'
                 ? products.find((p) => p.category === filters.category)?.category
                   ? (() => {
-                      const cat = products.find((p) =>
+                      const cat = products.find((p) => p.category === filters.category);
+                      return cat ? cat.category.charAt(0).toUpperCase() + cat.category.slice(1) : 'Shop';
+                    })()
+                  : 'Shop'
+                : 'All Products'}
+            </h1>
+          </motion.div>
+        </div>
+      </div>
+
+      <FilterBar
+        filters={filters}
+        onChange={updateFilter}
+        onClear={clearFilters}
+        resultCount={filtered.length}
+        maxPrice={MAX_PRICE}
+      />
+
+      <div className="container-page py-8">
+        <ProductGrid products={filtered} />
+      </div>
+    </div>
+  );
+}
