@@ -17,15 +17,15 @@ export default function CategoryCard({ category, index = 0 }: CategoryCardProps)
     >
       <Link
         to={`/shop?category=${category.slug}`}
-        className="group relative block aspect-[4/5] rounded-xl overflow-hidden bg-ink-900"
+        className="group relative block aspect-[4/5] rounded-xl overflow-hidden bg-ink-900 ring-1 ring-ink-900/10 transition-all duration-300 hover:ring-ink-900/20 hover:shadow-xl hover:shadow-ink-900/20"
       >
         <img
           src={category.image}
           alt={category.name}
           loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-500 ease-out-expo group-hover:opacity-50 group-hover:scale-110"
+          className="absolute inset-0 h-full w-full object-cover opacity-65 transition-all duration-500 ease-out-expo group-hover:opacity-40 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/50 to-transparent" />
         <div className="absolute inset-0 p-5 flex flex-col justify-end">
           <h3 className="font-display text-lg font-bold text-white mb-1">{category.name}</h3>
           <p className="text-xs text-ink-300 line-clamp-2 mb-3">{category.description}</p>

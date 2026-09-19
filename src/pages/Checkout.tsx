@@ -269,7 +269,7 @@ export default function Checkout() {
             <button
               type="submit"
               disabled={submitting}
-              className="btn-primary w-full !py-3 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="btn-accent w-full !py-3.5 !text-base !rounded-xl disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none"
             >
               {submitting ? (
                 <>

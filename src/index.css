@@ -28,15 +28,15 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-ink-900 text-white text-sm font-semibold transition-all duration-300 ease-out-expo hover:bg-ink-800 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-ink-900 text-white text-sm font-semibold shadow-sm shadow-ink-900/10 transition-all duration-300 ease-out-expo hover:bg-ink-800 hover:shadow-md hover:shadow-ink-900/15 active:scale-[0.98];
   }
 
   .btn-accent {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-accent-500 text-white text-sm font-semibold transition-all duration-300 ease-out-expo hover:bg-accent-600 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-accent-500 text-white text-sm font-semibold shadow-sm shadow-accent-500/20 transition-all duration-300 ease-out-expo hover:bg-accent-600 hover:shadow-md hover:shadow-accent-500/30 active:scale-[0.98];
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-ink-200 text-ink-900 text-sm font-semibold transition-all duration-300 ease-out-expo hover:border-ink-400 hover:bg-ink-50 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-ink-200 bg-white text-ink-900 text-sm font-semibold transition-all duration-300 ease-out-expo hover:border-ink-300 hover:bg-ink-50 hover:shadow-sm active:scale-[0.98];
   }
 
   .btn-ghost {
@@ -44,11 +44,11 @@
   }
 
   .card-surface {
-    @apply bg-white border border-ink-100 rounded-xl;
+    @apply bg-white border border-ink-100 rounded-xl shadow-sm shadow-ink-900/[0.02];
   }
 
   .input-field {
-    @apply w-full px-4 py-2.5 rounded-lg border border-ink-200 bg-white text-ink-900 text-sm transition-colors duration-200 focus:border-ink-900 focus:outline-none placeholder:text-ink-400;
+    @apply w-full px-4 py-2.5 rounded-lg border border-ink-200 bg-white text-ink-900 text-sm transition-all duration-200 focus:border-ink-900 focus:ring-2 focus:ring-ink-900/5 focus:outline-none placeholder:text-ink-400;
   }
 
   .label-text {

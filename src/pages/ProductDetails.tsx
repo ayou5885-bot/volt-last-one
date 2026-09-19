@@ -89,7 +89,7 @@ export default function ProductDetails() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="relative aspect-square rounded-2xl overflow-hidden bg-ink-100 border border-ink-100"
+            className="relative aspect-square rounded-2xl overflow-hidden bg-ink-100 border border-ink-100 shadow-sm shadow-ink-900/5"
           >
             <img
               src={product.image}
@@ -119,7 +119,7 @@ export default function ProductDetails() {
             </h1>
             <p className="text-sm text-ink-500 mt-2">{product.shortDescription}</p>
 
-            <div className="mt-5 flex items-baseline gap-3">
+            <div className="mt-5 flex items-baseline gap-3 pb-5 border-b border-ink-100">
               <span className="font-display text-3xl font-bold text-ink-900">
                 {formatPrice(product.price)}
               </span>
@@ -127,7 +127,7 @@ export default function ProductDetails() {
             </div>
 
             {/* Description */}
-            <p className="text-sm text-ink-600 leading-relaxed mt-6">{product.description}</p>
+            <p className="text-sm text-ink-600 leading-relaxed mt-5">{product.description}</p>
 
             {/* Features */}
             {product.features.length > 0 && (
@@ -136,7 +136,9 @@ export default function ProductDetails() {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {product.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-2 text-sm text-ink-700">
-                      <Check className="h-4 w-4 text-accent-500 shrink-0" />
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent-50 shrink-0">
+                        <Check className="h-3 w-3 text-accent-600" />
+                      </span>
                       {feature}
                     </li>
                   ))}
@@ -149,29 +151,35 @@ export default function ProductDetails() {
               <button
                 onClick={handleAddAndGo}
                 disabled={product.availability === 'out-of-stock'}
-                className="btn-primary flex-1 !py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-accent flex-1 !py-3.5 !text-base !rounded-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
               >
                 <ShoppingCart className="h-4 w-4" />
                 Add to Cart
               </button>
-              <Link to="/shop" className="btn-outline !py-3">
+              <Link to="/shop" className="btn-outline !py-3.5 !text-base !rounded-xl">
                 Continue Shopping
               </Link>
             </div>
 
             {/* Trust mini-badges */}
             <div className="mt-8 grid grid-cols-3 gap-3 pt-6 border-t border-ink-100">
-              <div className="flex items-center gap-2">
-                <Truck className="h-4 w-4 text-ink-500" />
-                <span className="text-xs text-ink-600">Free shipping over $99</span>
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-ink-50">
+                  <Truck className="h-4 w-4 text-ink-600" />
+                </div>
+                <span className="text-xs text-ink-600 leading-tight">Free shipping<br/>over $99</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-ink-500" />
-                <span className="text-xs text-ink-600">2-year warranty</span>
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-ink-50">
+                  <Shield className="h-4 w-4 text-ink-600" />
+                </div>
+                <span className="text-xs text-ink-600 leading-tight">2-year<br/>warranty</span>
               </div>
-              <div className="flex items-center gap-2">
-                <RotateCcw className="h-4 w-4 text-ink-500" />
-                <span className="text-xs text-ink-600">30-day returns</span>
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-ink-50">
+                  <RotateCcw className="h-4 w-4 text-ink-600" />
+                </div>
+                <span className="text-xs text-ink-600 leading-tight">30-day<br/>returns</span>
               </div>
             </div>
           </motion.div>
@@ -186,10 +194,10 @@ export default function ProductDetails() {
                 {product.specifications.map((spec, i) => (
                   <tr
                     key={spec.label}
-                    className={i % 2 === 0 ? 'bg-white' : 'bg-ink-50/50'}
+                    className={i % 2 === 0 ? 'bg-white' : 'bg-ink-50/40'}
                   >
-                    <td className="px-4 py-3 text-sm font-medium text-ink-500 w-1/3">{spec.label}</td>
-                    <td className="px-4 py-3 text-sm font-semibold text-ink-900">{spec.value}</td>
+                    <td className="px-5 py-3.5 text-sm font-medium text-ink-500 w-1/3">{spec.label}</td>
+                    <td className="px-5 py-3.5 text-sm font-semibold text-ink-900">{spec.value}</td>
                   </tr>
                 ))}
               </tbody>

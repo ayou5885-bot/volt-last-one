@@ -54,11 +54,11 @@ export default function Cart() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="card-surface p-4 flex items-center gap-4"
+                className="card-surface p-4 flex items-center gap-4 hover:shadow-md hover:shadow-ink-900/5 transition-shadow"
               >
                 <Link
                   to={`/product/${item.product.slug}`}
-                  className="shrink-0 w-20 h-20 rounded-lg overflow-hidden bg-ink-100"
+                  className="shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-ink-100 ring-1 ring-ink-100"
                 >
                   <img
                     src={item.product.image}
@@ -85,15 +85,15 @@ export default function Cart() {
                 <div className="flex items-center gap-1.5 shrink-0">
                   <button
                     onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                    className="p-1.5 rounded-lg border border-ink-200 text-ink-600 hover:border-ink-400 hover:text-ink-900 transition-colors"
+                    className="p-2 rounded-lg border border-ink-200 text-ink-600 hover:border-ink-400 hover:text-ink-900 hover:bg-ink-50 transition-colors"
                     aria-label="Decrease quantity"
                   >
                     <Minus className="h-3.5 w-3.5" />
                   </button>
-                  <span className="w-8 text-center text-sm font-semibold tabular-nums">{item.quantity}</span>
+                  <span className="w-9 text-center text-sm font-semibold tabular-nums">{item.quantity}</span>
                   <button
                     onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                    className="p-1.5 rounded-lg border border-ink-200 text-ink-600 hover:border-ink-400 hover:text-ink-900 transition-colors"
+                    className="p-2 rounded-lg border border-ink-200 text-ink-600 hover:border-ink-400 hover:text-ink-900 hover:bg-ink-50 transition-colors"
                     aria-label="Increase quantity"
                   >
                     <Plus className="h-3.5 w-3.5" />
@@ -135,7 +135,7 @@ export default function Cart() {
                 {formatPrice(subtotal + (subtotal >= 99 ? 0 : 12))}
               </span>
             </div>
-            <Link to="/checkout" className="btn-primary w-full !py-3 mt-2">
+            <Link to="/checkout" className="btn-accent w-full !py-3.5 !text-base !rounded-xl mt-2">
               Proceed to Checkout
               <ArrowRight className="h-4 w-4" />
             </Link>

@@ -35,7 +35,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
     >
       <Link
         to={`/product/${product.slug}`}
-        className="group block card-surface overflow-hidden transition-all duration-300 hover:border-ink-200 hover:shadow-lg hover:shadow-ink-900/5"
+        className="group block card-surface overflow-hidden transition-all duration-300 hover:border-ink-200 hover:shadow-xl hover:shadow-ink-900/8 hover:-translate-y-0.5"
       >
         {/* Image */}
         <div className="relative aspect-[4/3] overflow-hidden bg-ink-100">
@@ -45,8 +45,9 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-105"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <div className="absolute top-3 left-3">
-            <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold ${avail.className}`}>
+            <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold ${avail.className} backdrop-blur-sm`}>
               <AvailIcon className="h-3 w-3" />
               {avail.label}
             </span>
@@ -56,7 +57,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         {/* Content */}
         <div className="p-4 space-y-3">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-ink-400 mb-1">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-ink-400 mb-1">
               {product.brand}
             </p>
             <h3 className="font-display text-sm font-semibold text-ink-900 leading-snug line-clamp-2 group-hover:text-ink-700 transition-colors">
@@ -65,8 +66,8 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
             <p className="text-xs text-ink-500 mt-1 line-clamp-1">{product.shortDescription}</p>
           </div>
 
-          <div className="flex items-end justify-between gap-2 pt-1">
-            <span className="font-display text-lg font-bold text-ink-900">
+          <div className="flex items-end justify-between gap-2 pt-1 border-t border-ink-50">
+            <span className="font-display text-xl font-bold text-ink-900 pt-2">
               {formatPrice(product.price)}
             </span>
           </div>
@@ -75,12 +76,12 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
             <button
               onClick={handleAdd}
               disabled={product.availability === 'out-of-stock'}
-              className="flex-1 btn-primary !py-2 !text-xs disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 btn-accent !py-2.5 !text-xs disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
             >
               <ShoppingCart className="h-3.5 w-3.5" />
-              Add
+              Add to Cart
             </button>
-            <span className="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-lg border border-ink-200 text-ink-600 text-xs font-medium transition-colors group-hover:border-ink-900 group-hover:text-ink-900">
+            <span className="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-lg border border-ink-200 text-ink-600 text-xs font-medium transition-colors group-hover:border-ink-900 group-hover:text-ink-900 group-hover:bg-ink-50">
               Details
               <ArrowRight className="h-3 w-3" />
             </span>
