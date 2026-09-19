@@ -1,31 +1,35 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CheckCircle2, ArrowLeft, Loader2 } from 'lucide-react';
+import { CheckCircle2, ArrowLeft, ChevronDown, Loader2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { site } from '@/data/site';
+import { wilayas, getWilayaByCode } from '@/data/wilayas';
 import { formatPrice } from '@/lib/format';
 
 interface FormData {
   name: string;
   phone: string;
   email: string;
-  city: string;
+  wilaya: string;
   address: string;
   notes: string;
 }
 
-const emptyForm: FormData = { name: '', phone: '', email: '', city: '', address: '', notes: '' };
+const emptyForm: FormData = { name: '', phone: '', email: '', wilaya: '', address: '', notes: '' };
 
 export default function Checkout() {
   const { items, subtotal, clearCart, itemCount } = useCart();
+  const { language } = useLanguage();
   const [form, setForm] = useState<FormData>(emptyForm);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const shipping = subtotal >= 99 ? 0 : 12;
+  const selectedWilaya = getWilayaByCode(form.wilaya);
+  const shipping = selectedWilaya ? selectedWilaya.shippingPrice : 0;
   const total = subtotal + shipping;
 
   const update = (field: keyof FormData, value: string) => {
@@ -40,7 +44,7 @@ export default function Checkout() {
     lines.push(`Name: ${form.name}`);
     lines.push(`Phone: ${form.phone}`);
     lines.push(`Email: ${form.email}`);
-    lines.push(`City: ${form.city}`);
+    lines.push(`Wilaya: ${selectedWilaya ? `${selectedWilaya.code} - ${selectedWilaya.nameFr}` : form.wilaya}`);
     lines.push(`Address: ${form.address}`);
     if (form.notes) lines.push(`Notes: ${form.notes}`);
     lines.push('');
@@ -190,15 +194,26 @@ export default function Checkout() {
             <h2 className="font-display text-lg font-bold text-ink-900">Shipping Address</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="label-text" htmlFor="city">City *</label>
-                <input
-                  id="city"
-                  required
-                  value={form.city}
-                  onChange={(e) => update('city', e.target.value)}
-                  className="input-field"
-                  placeholder="San Francisco"
-                />
+                <label className="label-text" htmlFor="wilaya">Wilaya *</label>
+                <div className="relative">
+                  <select
+                    id="wilaya"
+                    required
+                    value={form.wilaya}
+                    onChange={(e) => update('wilaya', e.target.value)}
+                    className="input-field appearance-none pr-9 cursor-pointer"
+                  >
+                    <option value="" disabled>
+                      Select your wilaya
+                    </option>
+                    {wilayas.map((w) => (
+                      <option key={w.code} value={w.code}>
+                        {w.code} - {language === 'ar' ? w.nameAr : w.nameFr}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-400" />
+                </div>
               </div>
               <div className="sm:col-span-2">
                 <label className="label-text" htmlFor="address">Address *</label>
@@ -259,7 +274,9 @@ export default function Checkout() {
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-ink-500">Shipping</span>
-                <span className="font-semibold text-ink-900">{shipping === 0 ? 'Free' : formatPrice(shipping)}</span>
+                <span className="font-semibold text-ink-900">
+                  {selectedWilaya ? formatPrice(shipping) : 'Select a wilaya'}
+                </span>
               </div>
             </div>
             <div className="flex items-center justify-between py-4">
@@ -269,7 +286,7 @@ export default function Checkout() {
             <button
               type="submit"
               disabled={submitting}
-              className="btn-accent w-full !py-3.5 !text-base !rounded-xl disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none"
+              className="btn-primary w-full !py-3 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {submitting ? (
                 <>
