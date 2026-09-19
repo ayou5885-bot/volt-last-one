@@ -3,8 +3,11 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Search, ShoppingCart, Zap } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/data/translations';
 import { site } from '@/data/site';
 import { categories } from '@/data/categories';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -13,6 +16,8 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const { itemCount } = useCart();
   const navigate = useNavigate();
+  const { language } = useLanguage();
+  const t = translations[language];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -55,11 +60,11 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
-            <NavLink to="/" end className={navLinkClass}>Home</NavLink>
-            <NavLink to="/shop" className={navLinkClass}>Shop</NavLink>
+            <NavLink to="/" end className={navLinkClass}>{t.navigation.home}</NavLink>
+            <NavLink to="/shop" className={navLinkClass}>{t.navigation.shop}</NavLink>
             <div className="relative group">
               <button className="text-sm font-medium text-ink-500 hover:text-ink-900 transition-colors duration-200 flex items-center gap-1">
-                Categories
+                {t.navigation.categories}
               </button>
               <div className="absolute left-1/2 top-full pt-3 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <div className="w-[640px] p-2 rounded-xl border border-ink-100 bg-white shadow-xl">
@@ -90,10 +95,13 @@ export default function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-1">
+            <div className="hidden sm:block">
+              <LanguageSwitcher />
+            </div>
             <button
               onClick={() => setSearchOpen((s) => !s)}
               className="p-2.5 rounded-lg text-ink-600 hover:bg-ink-100 transition-colors"
-              aria-label="Search"
+              aria-label={t.search.search}
             >
               <Search className="h-5 w-5" />
             </button>
@@ -137,7 +145,7 @@ export default function Header() {
                     autoFocus
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
-                    placeholder="Search for products, brands, categories..."
+                    placeholder={t.search.searchPlaceholder}
                     className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-ink-200 bg-ink-50 text-sm focus:border-ink-900 focus:outline-none focus:bg-white transition-all"
                   />
                 </div>
@@ -166,7 +174,7 @@ export default function Header() {
                   `block px-3 py-2.5 rounded-lg text-sm font-medium ${isActive ? 'bg-ink-50 text-ink-900' : 'text-ink-600'}`
                 }
               >
-                Home
+                {t.navigation.home}
               </NavLink>
               <NavLink
                 to="/shop"
@@ -175,10 +183,10 @@ export default function Header() {
                   `block px-3 py-2.5 rounded-lg text-sm font-medium ${isActive ? 'bg-ink-50 text-ink-900' : 'text-ink-600'}`
                 }
               >
-                Shop
+                {t.navigation.shop}
               </NavLink>
               <div className="pt-2 pb-1 px-3 text-xs font-semibold uppercase tracking-wider text-ink-400">
-                Categories
+                {t.navigation.categories}
               </div>
               <div className="grid grid-cols-2 gap-1 max-h-64 overflow-y-auto">
                 {categories.map((cat) => (
@@ -191,6 +199,9 @@ export default function Header() {
                     {cat.name}
                   </NavLink>
                 ))}
+              </div>
+              <div className="pt-3 px-3">
+                <LanguageSwitcher />
               </div>
             </div>
           </motion.div>

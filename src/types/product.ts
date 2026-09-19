@@ -9,7 +9,7 @@ export interface Product {
   shortDescription: string;
   description: string;
   specifications: { label: string; value: string }[];
-  //features: string[];
+  features: string[];
   availability: 'in-stock' | 'low-stock' | 'out-of-stock';
   featured: boolean;
 }

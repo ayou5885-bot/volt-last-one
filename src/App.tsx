@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CartProvider } from '@/context/CartContext';
+import { LanguageProvider } from '@/context/LanguageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Home from '@/pages/Home';
@@ -39,13 +40,15 @@ function AnimatedRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <CartProvider>
-        <div className="flex min-h-screen flex-col bg-ink-50">
-          <Header />
-          <AnimatedRoutes />
-          <Footer />
-        </div>
-      </CartProvider>
+      <LanguageProvider>
+        <CartProvider>
+          <div className="flex min-h-screen flex-col bg-ink-50">
+            <Header />
+            <AnimatedRoutes />
+            <Footer />
+          </div>
+        </CartProvider>
+      </LanguageProvider>
     </BrowserRouter>
   );
 }
