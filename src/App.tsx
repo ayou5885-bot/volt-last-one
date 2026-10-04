@@ -19,6 +19,7 @@ import AdminLayout from '@/pages/admin/AdminLayout';
 import AdminOrders from '@/pages/admin/AdminOrders';
 import AdminProducts from '@/pages/admin/AdminProducts';
 import AdminCategories from '@/pages/admin/AdminCategories';
+import AdminBrands from '@/pages/admin/AdminBrands';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -73,6 +74,7 @@ function App() {
               <Route index element={<AdminOrders />} />
               <Route path="products" element={<AdminProducts />} />
               <Route path="categories" element={<AdminCategories />} />
+              <Route path="brands" element={<AdminBrands />} />
             </Route>
           </Route>
           <Route path="/*" element={<StoreLayout />} />
