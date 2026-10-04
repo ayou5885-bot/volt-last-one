@@ -1,7 +1,8 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { Loader2, Plus, Pencil, Trash2, X } from 'lucide-react';
-import { supabase, mapDbProductToProduct, type DbProduct } from '@/lib/supabase';
+import { Loader2, Plus, Pencil, Trash2, X, ImagePlus } from 'lucide-react';
+import { supabase, uploadImage, mapDbProductToProduct, type DbProduct } from '@/lib/supabase';
 import { useCategories } from '@/hooks/useCategories';
+import { useBrands } from '@/hooks/useBrands';
 import { formatPrice, slugify } from '@/lib/format';
 import type { Product } from '@/types/product';
 
@@ -70,12 +71,16 @@ function parseFeatures(text: string) {
 
 export default function AdminProducts() {
   const { categories } = useCategories();
+  const { brands } = useBrands();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(emptyForm);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState('');
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
 
   const load = async () => {
@@ -92,6 +97,8 @@ export default function AdminProducts() {
   const openNew = () => {
     setForm(emptyForm);
     setEditingId(null);
+    setImageFile(null);
+    setImagePreview('');
     setError('');
     setShowForm(true);
   };
@@ -99,12 +106,19 @@ export default function AdminProducts() {
   const openEdit = (p: Product) => {
     setForm(productToForm(p));
     setEditingId(p.id);
+    setImageFile(null);
+    setImagePreview(p.image);
     setError('');
     setShowForm(true);
   };
 
   const handleNameChange = (name: string) => {
     setForm((prev) => ({ ...prev, name, slug: editingId ? prev.slug : slugify(name) }));
+  };
+
+  const handleImageChange = (file: File | null) => {
+    setImageFile(file);
+    if (file) setImagePreview(URL.createObjectURL(file));
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -116,8 +130,25 @@ export default function AdminProducts() {
       setError('Name, brand, category, slug and a valid price are required.');
       return;
     }
+    if (!imageFile && !form.image) {
+      setError('Please choose a product image.');
+      return;
+    }
 
     setSaving(true);
+
+    let imageUrl = form.image;
+    if (imageFile) {
+      setUploading(true);
+      const { url, error: uploadError } = await uploadImage(imageFile, 'products');
+      setUploading(false);
+      if (uploadError || !url) {
+        setError(uploadError || 'Image upload failed.');
+        setSaving(false);
+        return;
+      }
+      imageUrl = url;
+    }
 
     const payload = {
       brand: form.brand,
@@ -125,7 +156,7 @@ export default function AdminProducts() {
       slug: form.slug,
       category: form.category,
       price,
-      image: form.image,
+      image: imageUrl,
       short_description: form.shortDescription,
       description: form.description,
       specifications: parseSpecifications(form.specificationsText),
@@ -249,7 +280,19 @@ export default function AdminProducts() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="label-text">Brand</label>
-                  <input value={form.brand} onChange={(e) => setForm((p) => ({ ...p, brand: e.target.value }))} className="input-field" required />
+                  <select
+                    value={form.brand}
+                    onChange={(e) => setForm((p) => ({ ...p, brand: e.target.value }))}
+                    className="input-field"
+                    required
+                  >
+                    <option value="">Select...</option>
+                    {brands.map((b) => (
+                      <option key={b.id} value={b.name}>
+                        {b.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div>
                   <label className="label-text">Category</label>
@@ -290,8 +333,26 @@ export default function AdminProducts() {
                 </div>
               </div>
               <div>
-                <label className="label-text">Image URL</label>
-                <input value={form.image} onChange={(e) => setForm((p) => ({ ...p, image: e.target.value }))} className="input-field" />
+                <label className="label-text">Product Image</label>
+                <div className="flex items-center gap-3">
+                  <div className="h-20 w-20 shrink-0 rounded-lg bg-ink-100 overflow-hidden flex items-center justify-center">
+                    {imagePreview ? (
+                      <img src={imagePreview} alt="Preview" className="h-full w-full object-cover" />
+                    ) : (
+                      <ImagePlus className="h-6 w-6 text-ink-300" />
+                    )}
+                  </div>
+                  <label className="btn-outline !py-2 !px-3 !text-xs cursor-pointer">
+                    {uploading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ImagePlus className="h-3.5 w-3.5" />}
+                    {imagePreview ? 'Change Image' : 'Choose Image'}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => handleImageChange(e.target.files?.[0] ?? null)}
+                    />
+                  </label>
+                </div>
               </div>
               <div>
                 <label className="label-text">Short Description</label>
@@ -354,7 +415,7 @@ export default function AdminProducts() {
                 </label>
               </div>
               {error && <p className="text-sm text-red-600">{error}</p>}
-              <button type="submit" disabled={saving} className="btn-primary w-full !py-3 disabled:opacity-60">
+              <button type="submit" disabled={saving || uploading} className="btn-primary w-full !py-3 disabled:opacity-60">
                 {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : editingId ? 'Save Changes' : 'Add Product'}
               </button>
             </form>
