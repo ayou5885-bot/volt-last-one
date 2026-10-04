@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Shield, Truck, Headphones, Lock, Zap, AlertCircle } from 'lucide-react';
 import { useProducts } from '@/hooks/useProducts';
 import { useCategories } from '@/hooks/useCategories';
-import { brands } from '@/data/brands';
+import { useBrands } from '@/hooks/useBrands';
 import { site } from '@/data/site';
 import { images } from '@/data/images';
 import ProductCard from '@/components/ProductCard';
@@ -14,6 +14,7 @@ const trustIcons = [Truck, Shield, Headphones, Lock];
 export default function Home() {
   const { products, loading, error } = useProducts();
   const { categories } = useCategories();
+  const { brands } = useBrands();
   const featured = products.filter((p) => p.featured).slice(0, 4);
   const popularCategories = categories.slice(0, 6);
 
