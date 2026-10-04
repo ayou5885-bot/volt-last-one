@@ -1,11 +1,12 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { ClipboardList, Package, Tag, LogOut, ExternalLink, Zap } from 'lucide-react';
+import { ClipboardList, Package, Tag, Tags, LogOut, ExternalLink, Zap } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
 const navItems = [
   { to: '/admin', label: 'Orders', icon: ClipboardList, end: true },
   { to: '/admin/products', label: 'Products', icon: Package, end: false },
   { to: '/admin/categories', label: 'Categories', icon: Tag, end: false },
+  { to: '/admin/brands', label: 'Brands', icon: Tags, end: false },
 ];
 
 export default function AdminLayout() {
