@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SlidersHorizontal, X, Search, ChevronDown } from 'lucide-react';
 import type { SortOption } from '@/types/product';
 import { useCategories } from '@/hooks/useCategories';
-import { brands } from '@/data/brands';
+import { useBrands } from '@/hooks/useBrands';
 
 export interface FilterState {
   category: string;
@@ -38,6 +38,7 @@ export default function FilterBar({
 }: FilterBarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { categories } = useCategories();
+  const { brands } = useBrands();
 
   const activeCount =
     (filters.category !== 'all' ? 1 : 0) +
