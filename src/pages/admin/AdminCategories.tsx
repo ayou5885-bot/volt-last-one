@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { Loader2, Plus, Pencil, Trash2, X } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { Loader2, Plus, Pencil, Trash2, X, ImagePlus } from 'lucide-react';
+import { supabase, uploadImage } from '@/lib/supabase';
 import { slugify } from '@/lib/format';
 import type { Category } from '@/types/product';
 
@@ -12,7 +12,10 @@ export default function AdminCategories() {
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState('');
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
 
   const load = async () => {
@@ -29,6 +32,8 @@ export default function AdminCategories() {
   const openNew = () => {
     setForm(emptyForm);
     setEditingId(null);
+    setImageFile(null);
+    setImagePreview('');
     setError('');
     setShowForm(true);
   };
@@ -36,8 +41,15 @@ export default function AdminCategories() {
   const openEdit = (cat: Category) => {
     setForm({ name: cat.name, slug: cat.slug, description: cat.description, image: cat.image });
     setEditingId(cat.id);
+    setImageFile(null);
+    setImagePreview(cat.image);
     setError('');
     setShowForm(true);
+  };
+
+  const handleImageChange = (file: File | null) => {
+    setImageFile(file);
+    if (file) setImagePreview(URL.createObjectURL(file));
   };
 
   const handleNameChange = (name: string) => {
@@ -56,13 +68,30 @@ export default function AdminCategories() {
       setError('Name and slug are required.');
       return;
     }
+    if (!imageFile && !form.image) {
+      setError('Please choose a category image.');
+      return;
+    }
 
     setSaving(true);
+
+    let imageUrl = form.image;
+    if (imageFile) {
+      setUploading(true);
+      const { url, error: uploadError } = await uploadImage(imageFile, 'categories');
+      setUploading(false);
+      if (uploadError || !url) {
+        setError(uploadError || 'Image upload failed.');
+        setSaving(false);
+        return;
+      }
+      imageUrl = url;
+    }
 
     if (editingId) {
       const { error } = await supabase
         .from('categories')
-        .update({ name: form.name, slug: form.slug, description: form.description, image: form.image })
+        .update({ name: form.name, slug: form.slug, description: form.description, image: imageUrl })
         .eq('id', editingId);
       if (error) {
         setError(error.message);
@@ -75,7 +104,7 @@ export default function AdminCategories() {
         name: form.name,
         slug: form.slug,
         description: form.description,
-        image: form.image,
+        image: imageUrl,
       });
       if (error) {
         setError(error.message);
@@ -169,11 +198,29 @@ export default function AdminCategories() {
                 <input value={form.description} onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))} className="input-field" />
               </div>
               <div>
-                <label className="label-text">Image URL</label>
-                <input value={form.image} onChange={(e) => setForm((p) => ({ ...p, image: e.target.value }))} className="input-field" />
+                <label className="label-text">Category Image</label>
+                <div className="flex items-center gap-3">
+                  <div className="h-16 w-24 shrink-0 rounded-lg bg-ink-100 overflow-hidden flex items-center justify-center">
+                    {imagePreview ? (
+                      <img src={imagePreview} alt="Preview" className="h-full w-full object-cover" />
+                    ) : (
+                      <ImagePlus className="h-5 w-5 text-ink-300" />
+                    )}
+                  </div>
+                  <label className="btn-outline !py-2 !px-3 !text-xs cursor-pointer">
+                    {uploading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ImagePlus className="h-3.5 w-3.5" />}
+                    {imagePreview ? 'Change Image' : 'Choose Image'}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => handleImageChange(e.target.files?.[0] ?? null)}
+                    />
+                  </label>
+                </div>
               </div>
               {error && <p className="text-sm text-red-600">{error}</p>}
-              <button type="submit" disabled={saving} className="btn-primary w-full !py-3 disabled:opacity-60">
+              <button type="submit" disabled={saving || uploading} className="btn-primary w-full !py-3 disabled:opacity-60">
                 {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : editingId ? 'Save Changes' : 'Add Category'}
               </button>
             </form>
