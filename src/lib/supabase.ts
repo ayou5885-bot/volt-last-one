@@ -23,6 +23,28 @@ export interface DbProduct {
   created_at: string;
 }
 
+// Uploads an image to the public "store-images" bucket under products/ or
+// categories/, and returns its public URL. Used by the admin product and
+// category forms instead of asking for a hosted image URL.
+export async function uploadImage(
+  file: File,
+  folder: 'products' | 'categories'
+): Promise<{ url: string | null; error: string | null }> {
+  const ext = file.name.split('.').pop() || 'jpg';
+  const path = `${folder}/${crypto.randomUUID()}.${ext}`;
+
+  const { error: uploadError } = await supabase.storage
+    .from('store-images')
+    .upload(path, file, { cacheControl: '3600', upsert: false });
+
+  if (uploadError) {
+    return { url: null, error: uploadError.message };
+  }
+
+  const { data } = supabase.storage.from('store-images').getPublicUrl(path);
+  return { url: data.publicUrl, error: null };
+}
+
 export function mapDbProductToProduct(row: DbProduct): Product {
   return {
     id: row.id,
